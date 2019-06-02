@@ -15,12 +15,23 @@
     android:paddingTop="@dimen/activity_vertical_margin">
 
     <!-- EditText for getting task description input -->
+
+    <!-- 0602119 JP-CF changed id
     <EditText
         android:id="@+id/editTextTaskDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="start"
         android:hint="@string/edit_task_description"
+        android:paddingBottom ="@dimen/activity_horizontal_margin"/>
+  -->
+
+    <EditText
+        android:id="@+id/editTextSignData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:hint="@string/edit_Text_Data_Hint"
         android:paddingBottom ="@dimen/activity_horizontal_margin"/>
 
     <!-- TextView and FrameLayout (which contains buttons) for Priority Selection -->

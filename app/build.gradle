@@ -12,6 +12,11 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+
+        customDebugType {
+            debuggable true
+        }
+
         release {
             minifyEnabled false
         }

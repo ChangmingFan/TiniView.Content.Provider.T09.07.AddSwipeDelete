@@ -52,7 +52,7 @@ public class AddTaskActivity extends AppCompatActivity {
         // Not yet implemented
         // Check if EditText is empty, if not retrieve input and store it in a ContentValues object
         // If the EditText input is empty -> don't create an entry
-        String input = ((EditText) findViewById(R.id.editTextTaskDescription)).getText().toString();
+        String input = ((EditText) findViewById(R.id.editTextSignData)).getText().toString();
         if (input.length() == 0) {
             return;
         }
@@ -61,7 +61,7 @@ public class AddTaskActivity extends AppCompatActivity {
         // Create new empty ContentValues object
         ContentValues contentValues = new ContentValues();
         // Put the task description and selected mPriority into the ContentValues
-        contentValues.put(TaskContract.TaskEntry.COLUMN_DESCRIPTION, input);
+        contentValues.put(TaskContract.TaskEntry.COLUMN_TEXTDATA, input);
         contentValues.put(TaskContract.TaskEntry.COLUMN_PRIORITY, mPriority);
         // Insert the content values via a ContentResolver
         Uri uri = getContentResolver().insert(TaskContract.TaskEntry.CONTENT_URI, contentValues);

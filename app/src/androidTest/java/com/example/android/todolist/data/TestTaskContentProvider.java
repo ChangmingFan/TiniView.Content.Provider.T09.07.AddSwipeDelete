@@ -179,7 +179,7 @@ public class TestTaskContentProvider {
         /* Create values to insert */
         ContentValues testTaskValues = new ContentValues();
         testTaskValues.put(TaskContract.TaskEntry.COLUMN_TEXTDATA, "Test description");
-        testTaskValues.put(TaskContract.TaskEntry.COLUMN_PRIORITY, 1);
+        testTaskValues.put(TaskContract.TaskEntry.COLUMN_SPEED, 1);
 
         /* TestContentObserver allows us to test if notifyChange was called appropriately */
         TestUtilities.TestContentObserver taskObserver = TestUtilities.getTestContentObserver();
@@ -236,7 +236,7 @@ public class TestTaskContentProvider {
         /* Create values to insert */
         ContentValues testTaskValues = new ContentValues();
         testTaskValues.put(TaskContract.TaskEntry.COLUMN_TEXTDATA, "Test description");
-        testTaskValues.put(TaskContract.TaskEntry.COLUMN_PRIORITY, 1);
+        testTaskValues.put(TaskContract.TaskEntry.COLUMN_SPEED, 1);
 
         /* Insert ContentValues into database and get a row ID back */
         long taskRowId = database.insert(
@@ -290,7 +290,7 @@ public class TestTaskContentProvider {
         /* Create a new row of task data */
         ContentValues testTaskValues = new ContentValues();
         testTaskValues.put(TaskContract.TaskEntry.COLUMN_TEXTDATA, "Test description");
-        testTaskValues.put(TaskContract.TaskEntry.COLUMN_PRIORITY, 1);
+        testTaskValues.put(TaskContract.TaskEntry.COLUMN_SPEED, 1);
 
         /* Insert ContentValues into database and get a row ID back */
         long taskRowId = database.insert(

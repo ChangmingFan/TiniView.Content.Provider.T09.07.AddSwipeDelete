@@ -61,8 +61,8 @@ public class TaskContract {
         //public static final String COLUMN_DESCRIPTION = "description";
         public static final String COLUMN_TEXTDATA = "textdata";
 
-        public static final String COLUMN_PRIORITY = "priority";
-
+        //public static final String COLUMN_PRIORITY = "priority";
+        public static final String COLUMN_SPEED = "speed";
 
         /*
         The above table structure looks something like the sample table below.

@@ -31,16 +31,20 @@ import com.example.android.todolist.data.TaskContract;
 public class AddTaskActivity extends AppCompatActivity {
 
     // Declare a member variable to keep track of a task's selected mPriority
-    private int mPriority;
+    private int mSpeed;
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
 
+
+        //060319 JP comment this out when replacing radio button with text box
         // Initialize to highest mPriority by default (mPriority = 1)
-        ((RadioButton) findViewById(R.id.radButton1)).setChecked(true);
-        mPriority = 1;
+        //((RadioButton) findViewById(R.id.radButton1)).setChecked(true);
+
+
+        mSpeed = 1;
     }
 
 
@@ -57,12 +61,25 @@ public class AddTaskActivity extends AppCompatActivity {
             return;
         }
 
+        try {
+
+            mSpeed =   Integer.parseInt (((EditText) findViewById(R.id.editSpeed)).getText().toString());
+
+        }
+        catch (NumberFormatException e) {
+
+
+
+        }
+
+
+
         // Insert new task data via a ContentResolver
         // Create new empty ContentValues object
         ContentValues contentValues = new ContentValues();
         // Put the task description and selected mPriority into the ContentValues
         contentValues.put(TaskContract.TaskEntry.COLUMN_TEXTDATA, input);
-        contentValues.put(TaskContract.TaskEntry.COLUMN_PRIORITY, mPriority);
+        contentValues.put(TaskContract.TaskEntry.COLUMN_SPEED, mSpeed);
         // Insert the content values via a ContentResolver
         Uri uri = getContentResolver().insert(TaskContract.TaskEntry.CONTENT_URI, contentValues);
 
@@ -78,10 +95,10 @@ public class AddTaskActivity extends AppCompatActivity {
     }
 
 
-    /**
+    /**  060319 JP remove function
      * onPrioritySelected is called whenever a priority button is clicked.
      * It changes the value of mPriority based on the selected button.
-     */
+
     public void onPrioritySelected(View view) {
         if (((RadioButton) findViewById(R.id.radButton1)).isChecked()) {
             mPriority = 1;
@@ -91,4 +108,6 @@ public class AddTaskActivity extends AppCompatActivity {
             mPriority = 3;
         }
     }
+     */
+
 }

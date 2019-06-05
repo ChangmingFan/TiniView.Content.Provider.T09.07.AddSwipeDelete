@@ -13,7 +13,7 @@
     <string name="edit_task_description">Describe your task&#8230;</string>
 
     <string name="edit_Text_Data_Hint">Enter Text Data&#8230;</string>
-
+    <string name="edit_Speed">Speed (seconds) &#8230;</string>
 
     <string name="priority_string">Priority</string>
 

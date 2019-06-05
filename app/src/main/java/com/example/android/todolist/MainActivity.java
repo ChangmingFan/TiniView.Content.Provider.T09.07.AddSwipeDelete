@@ -175,7 +175,7 @@ public class MainActivity extends AppCompatActivity implements
                             null,
                             null,
                             null,
-                            TaskContract.TaskEntry.COLUMN_PRIORITY);
+                            TaskContract.TaskEntry.COLUMN_SPEED);
 
                 } catch (Exception e) {
                     Log.e(TAG, "Failed to asynchronously load data.");

@@ -18,7 +18,7 @@ package com.example.android.todolist;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.graphics.drawable.GradientDrawable;
+//import android.graphics.drawable.GradientDrawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -78,13 +78,14 @@ public class CustomCursorAdapter extends RecyclerView.Adapter<CustomCursorAdapte
         // Indices for the _id, description, and priority columns
         int idIndex = mCursor.getColumnIndex(TaskContract.TaskEntry._ID);
         int descriptionIndex = mCursor.getColumnIndex(TaskContract.TaskEntry.COLUMN_TEXTDATA);
-        int priorityIndex = mCursor.getColumnIndex(TaskContract.TaskEntry.COLUMN_PRIORITY);
+        int priorityIndex = mCursor.getColumnIndex(TaskContract.TaskEntry.COLUMN_SPEED);
 
         mCursor.moveToPosition(position); // get to the right location in the cursor
 
         // Determine the values of the wanted data
         final int id = mCursor.getInt(idIndex);
         String description = mCursor.getString(descriptionIndex);
+
         int priority = mCursor.getInt(priorityIndex);
 
         //Set values
@@ -95,10 +96,13 @@ public class CustomCursorAdapter extends RecyclerView.Adapter<CustomCursorAdapte
         String priorityString = "" + priority; // converts int to String
         holder.priorityView.setText(priorityString);
 
+        //060429 JP removed the circle and collor around speed
+        /*
         GradientDrawable priorityCircle = (GradientDrawable) holder.priorityView.getBackground();
         // Get the appropriate background color based on the priority
         int priorityColor = getPriorityColor(priority);
         priorityCircle.setColor(priorityColor);
+*/
 
     }
 

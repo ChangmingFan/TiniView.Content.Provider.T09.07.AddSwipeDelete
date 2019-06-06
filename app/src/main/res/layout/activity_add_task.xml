@@ -27,22 +27,99 @@
   -->
 
     <EditText
-        android:id="@+id/editTextSignData"
+        android:id="@+id/editTextSignData1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="start"
         android:hint="@string/edit_Text_Data_Hint"
+        android:maxLength="24"
         android:paddingBottom ="@dimen/activity_horizontal_margin"/>
-
 
 
     <EditText
-        android:id="@+id/editSpeed"
+        android:id="@+id/editTextSignData2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="start"
-        android:hint="@string/edit_Speed"
+        android:hint="@string/edit_Text_Data_Hint"
+        android:maxLength="24"
         android:paddingBottom ="@dimen/activity_horizontal_margin"/>
+
+    <EditText
+        android:id="@+id/editTextSignData3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:hint="@string/edit_Text_Data_Hint"
+        android:maxLength="24"
+        android:paddingBottom ="@dimen/activity_horizontal_margin"/>
+
+    <EditText
+        android:id="@+id/editTextSignData4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:hint="@string/edit_Text_Data_Hint"
+        android:maxLength="24"
+        android:paddingBottom ="@dimen/activity_horizontal_margin"/>
+
+    <EditText
+        android:id="@+id/editTextSignData5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:hint="@string/edit_Text_Data_Hint"
+        android:maxLength="24"
+        android:paddingBottom ="@dimen/activity_horizontal_margin"/>
+
+    <EditText
+        android:id="@+id/editTextSignData6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:hint="@string/edit_Text_Data_Hint"
+        android:maxLength="24"
+        android:paddingBottom ="@dimen/activity_horizontal_margin"/>
+
+    <EditText
+        android:id="@+id/editTextSignData7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:hint="@string/edit_Text_Data_Hint"
+        android:maxLength="24"
+        android:paddingBottom ="@dimen/activity_horizontal_margin"/>
+
+    <EditText
+        android:id="@+id/editTextSignData8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:hint="@string/edit_Text_Data_Hint"
+        android:maxLength="24"
+        android:paddingBottom ="@dimen/activity_horizontal_margin"/>
+
+
+    <EditText
+        android:id="@+id/editTextSignData9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:hint="@string/edit_Text_Data_Hint"
+        android:maxLength="24"
+        android:paddingBottom ="@dimen/activity_horizontal_margin"/>
+
+    <EditText
+        android:id="@+id/editTextSignData10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:hint="@string/edit_Text_Data_Hint"
+        android:maxLength="24"
+        android:paddingBottom ="@dimen/activity_horizontal_margin"/>
+
+
+
 
 
     <!-- 060319 jp removed radio buttons to replace with text box

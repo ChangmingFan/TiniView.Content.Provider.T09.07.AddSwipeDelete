@@ -17,6 +17,7 @@
 package com.example.android.todolist;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -38,6 +39,16 @@ public class AddTaskActivity extends AppCompatActivity {
 
     private int mLinelength = 24;
 
+    //060819 JP actually added as last update with out comment made. This stores the ids of the  text boxes
+    int[] tbid = new int[10];
+
+    //060919 JP added these arrays. they are populated as intent extras passed to this activity.
+    //                they store current sign data
+    String lines[] = new String[10];
+    boolean lineInDatabase[] = new boolean[10];
+
+
+    //this filter  never worked and is not currently used
     InputFilter filter = new InputFilter() {
         public CharSequence filter(CharSequence source, int start, int end,
                                    Spanned dest, int dstart, int dend) {
@@ -91,9 +102,37 @@ public class AddTaskActivity extends AppCompatActivity {
 
 
 
+
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
+
+//060819 JP actually added as last update with out comment made. This stores the ids of the  text boxes
+        tbid[0] = R.id.editTextSignData1;
+        tbid[1] = R.id.editTextSignData2;
+        tbid[2] = R.id.editTextSignData3;
+        tbid[3] = R.id.editTextSignData4;
+        tbid[4] = R.id.editTextSignData5;
+        tbid[5] = R.id.editTextSignData6;
+        tbid[6] = R.id.editTextSignData7;
+        tbid[7] = R.id.editTextSignData8;
+        tbid[8] = R.id.editTextSignData9;
+        tbid[9] = R.id.editTextSignData10;
+
+        Intent intentThatStartedThisActivity = getIntent();
+
+        lines= intentThatStartedThisActivity.getStringArrayExtra("lines") ;
+
+        lineInDatabase = intentThatStartedThisActivity.getBooleanArrayExtra("lineInDatabase");
+
+
+        //060919 JP this copies the data sent in the intent into the textboxes
+        for (int i = 0; i < 10 ; i++) {
+
+            ((EditText) findViewById(tbid[i])).setText(lines[i]);
+
+        }
 
       //060619 JP filter doesnt work
       //  ((EditText) findViewById(R.id.editTextSignData)).setFilters(new InputFilter[] { filter });
@@ -116,25 +155,11 @@ public class AddTaskActivity extends AppCompatActivity {
     public void onClickAddTask(View view) {
 
 
-        int[] tbid = new int[10];
-
-        tbid[0] = R.id.editTextSignData1;
-        tbid[1] = R.id.editTextSignData2;
-        tbid[2] = R.id.editTextSignData3;
-        tbid[3] = R.id.editTextSignData4;
-        tbid[4] = R.id.editTextSignData5;
-        tbid[5] = R.id.editTextSignData6;
-        tbid[6] = R.id.editTextSignData7;
-        tbid[7] = R.id.editTextSignData8;
-        tbid[8] = R.id.editTextSignData9;
-        tbid[9] = R.id.editTextSignData10;
 
 
-        // Not yet implemented
-        // Check if EditText is empty, if not retrieve input and store it in a ContentValues object
-        // If the EditText input is empty -> don't create an entry
 
-
+        //060819 JP actually modified as last update with out comment made
+        //uses a loop add 10 lines instead of 1
         for (int j = 0; j < 10; j++) {
 
             String input = ((EditText) findViewById(tbid[j])).getText().toString();

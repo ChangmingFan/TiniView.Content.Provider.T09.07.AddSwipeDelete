@@ -37,6 +37,9 @@ import com.example.android.todolist.data.TaskContract;
 public class MainActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
+     //060919 JP these arrays are set int method swapcursor . They are passed as extras to AddTaskActivity
+     String lines[] = new String[10];
+     boolean lineInDatabase[] = new boolean[10];
 
     // Constants for logging and referring to a unique loader
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -110,6 +113,9 @@ public class MainActivity extends AppCompatActivity implements
             public void onClick(View view) {
                 // Create a new intent to start an AddTaskActivity
                 Intent addTaskIntent = new Intent(MainActivity.this, AddTaskActivity.class);
+                addTaskIntent.putExtra("lines", lines);
+                addTaskIntent.putExtra("lineInDatabase", lineInDatabase);
+
                 startActivity(addTaskIntent);
             }
         });
@@ -135,6 +141,45 @@ public class MainActivity extends AppCompatActivity implements
         getSupportLoaderManager().restartLoader(TASK_LOADER_ID, null, this);
     }
 
+    Cursor mCursor;
+
+    //060919 JP this function is called whenever a new cursor  finishes loading
+    //             it populates values later sent to  AddTaskActivity as intent  extras
+    public Cursor swapCursor(Cursor c) {
+
+
+        // check if this cursor is the same as the previous cursor (mCursor)
+        if (mCursor == c) {
+            return null; // bc nothing has changed
+        }
+        Cursor temp = mCursor;
+        this.mCursor = c; // new cursor value assigned
+
+        //check if this is a valid cursor, then update the cursor
+        if (c != null) {
+            int textdataIndex = mCursor.getColumnIndex(TaskContract.TaskEntry.COLUMN_TEXTDATA);
+            int idIndex = mCursor.getColumnIndex(TaskContract.TaskEntry._ID);
+
+
+
+            for   (int i = 0; i < 10; i++) {
+
+               lines[i] = "";
+               lineInDatabase[i] = false;
+            }
+
+
+
+          while (mCursor.moveToNext()){
+
+              if (mCursor.getInt(idIndex) > 10 ) {continue;}
+              lines[mCursor.getInt(idIndex) - 1 ] = mCursor.getString(textdataIndex);
+              lineInDatabase[mCursor.getInt(idIndex) -1 ] = true;
+
+          }
+        }
+        return temp;
+    }
 
     /**
      * Instantiates and returns a new AsyncTaskLoader with the given ID.
@@ -203,7 +248,11 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         // Update the data that the adapter uses to create ViewHolders
+
+
         mAdapter.swapCursor(data);
+        //jp060919 call swapCursor for this class as well as for mAdapter
+        swapCursor(data);
     }
 
 
@@ -217,6 +266,8 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
             mAdapter.swapCursor(null);
+        //jp060919 call swapCursor for this class as well as for mAdapter
+            swapCursor(null);
         }
 
 }

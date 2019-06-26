@@ -192,7 +192,34 @@ public class TaskContentProvider extends ContentProvider {
     public int update(@NonNull Uri uri, ContentValues values, String selection,
                       String[] selectionArgs) {
 
-        throw new UnsupportedOperationException("Not yet implemented");
+
+        final SQLiteDatabase db = mTaskDbHelper.getWritableDatabase();
+
+        // Write URI matching code to identify the match for the tasks directory
+        int match = sUriMatcher.match(uri);
+        int returnvalue = 0;
+
+        switch (match) {
+
+            case TASKS:
+                // Insert new values into the database
+                // Inserting values into tasks table
+                long id = db.update(TABLE_NAME, values, selection, null );
+                returnvalue = (int) id;
+                                break;
+            // Set the value for the returnedUri and write the default case for unknown URI's
+            // Default case throws an UnsupportedOperationException
+            default:
+                throw new UnsupportedOperationException("Unknown uri: " + uri);
+        }
+
+        // Notify the resolver if the uri has been changed, and return the newly inserted URI
+        getContext().getContentResolver().notifyChange(uri, null);
+
+        // Return constructed uri (this points to the newly inserted row of data)
+        return returnvalue;
+
+        //throw new UnsupportedOperationException("Not yet implemented");
     }
 
 

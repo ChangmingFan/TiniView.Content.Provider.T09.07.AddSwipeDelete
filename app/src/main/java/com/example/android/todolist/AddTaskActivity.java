@@ -124,6 +124,7 @@ public class AddTaskActivity extends AppCompatActivity {
 
         lines= intentThatStartedThisActivity.getStringArrayExtra("lines") ;
 
+        
         lineInDatabase = intentThatStartedThisActivity.getBooleanArrayExtra("lineInDatabase");
 
 
@@ -164,28 +165,45 @@ public class AddTaskActivity extends AppCompatActivity {
 
             String input = ((EditText) findViewById(tbid[j])).getText().toString();
 
+
             /*
             if (input.length() == 0) {
                 return;
             }*/
 
 
-            mSpeed = 3;
+
 
             // Insert new task data via a ContentResolver
             // Create new empty ContentValues object
             ContentValues contentValues = new ContentValues();
             // Put the task description and selected mPriority into the ContentValues
             contentValues.put(TaskContract.TaskEntry.COLUMN_TEXTDATA, input);
-            contentValues.put(TaskContract.TaskEntry.COLUMN_SPEED, mSpeed);
-            // Insert the content values via a ContentResolver
-            Uri uri = getContentResolver().insert(TaskContract.TaskEntry.CONTENT_URI, contentValues);
+            Uri uri;
 
+            if (lineInDatabase[j] ) {
+                String whereclause ;
+
+                whereclause = TaskContract.TaskEntry._ID + "="  +  (j + 1);
+
+                //contentValues.put(TaskContract.TaskEntry._ID, "" + j + 1);
+                int success = getContentResolver().update(TaskContract.TaskEntry.CONTENT_URI, contentValues, whereclause, null);
+
+            }
+
+            else {
+                contentValues.put(TaskContract.TaskEntry._ID, "" + (j + 1));
+                contentValues.put(TaskContract.TaskEntry.COLUMN_SPEED, mSpeed);
+                // Insert the content values via a ContentResolver
+                uri = getContentResolver().insert(TaskContract.TaskEntry.CONTENT_URI, contentValues);
+
+                if (uri != null) {
+                    Toast.makeText(getBaseContext(), uri.toString(), Toast.LENGTH_LONG).show();
+                }
+            }
             // Display the URI that's returned with a Toast
             // [Hint] Don't forget to call finish() to return to MainActivity after this insert is complete
-            if (uri != null) {
-                Toast.makeText(getBaseContext(), uri.toString(), Toast.LENGTH_LONG).show();
-            }
+
 
         }
             // Finish activity (this returns back to MainActivity)

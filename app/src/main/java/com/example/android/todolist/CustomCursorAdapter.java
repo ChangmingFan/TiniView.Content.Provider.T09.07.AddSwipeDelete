@@ -93,7 +93,10 @@ public class CustomCursorAdapter extends RecyclerView.Adapter<CustomCursorAdapte
         holder.taskDescriptionView.setText(description);
 
         // Programmatically set the text and color for the priority TextView
-        String priorityString = "" + priority; // converts int to String
+
+        //String priorityString = "" + priority; // converts int to String
+        String priorityString = "" + id;
+
         holder.priorityView.setText(priorityString);
 
         //060429 JP removed the circle and collor around speed
